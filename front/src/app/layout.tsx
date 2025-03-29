@@ -1,20 +1,18 @@
+import { Toaster } from '@/components/ui/sonner';
+import { cn } from '@/lib/utils';
+import SessionProvider from '@/providers/SessionProvider';
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Inter as FontSans } from 'next/font/google';
 import './globals.css';
 
-const geistSans = Geist({
-	variable: '--font-geist-sans',
+const fontSans = FontSans({
 	subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-	variable: '--font-geist-mono',
-	subsets: ['latin'],
+	variable: '--font-sans',
 });
 
 export const metadata: Metadata = {
 	title: 'Slick-Chat',
-	description: 'A chat application built with NextJS',
+	description: 'Slick Chat App',
 };
 
 export default function RootLayout({
@@ -23,12 +21,18 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
-			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-			>
-				{children}
-			</body>
+		<html lang="en" suppressHydrationWarning>
+			<SessionProvider>
+				<body
+					className={cn(
+						'min-h-screen bg-background font-sans antialiased',
+						fontSans.variable
+					)}
+				>
+					{children}
+					<Toaster richColors duration={5000} />
+				</body>
+			</SessionProvider>
 		</html>
 	);
 }
