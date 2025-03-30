@@ -1,37 +1,46 @@
 import {
 	Dialog,
 	DialogContent,
-	DialogDescription,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog';
+import { DialogDescription } from '@radix-ui/react-dialog';
+import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import React from 'react';
 import { Button } from '../ui/button';
+
+const handleGoogleLogin = async () => {
+	signIn('google', {
+		redirect: true,
+		callbackUrl: '/dashboard',
+	});
+};
 
 export default function LoginModal() {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button>Getting Start</Button>
+				<Button>Getting start</Button>
 			</DialogTrigger>
 			<DialogContent>
 				<DialogHeader>
 					<DialogTitle className="text-2xl">Welcome to Slick-Chat</DialogTitle>
 					<DialogDescription>
-						Sign in to start chatting with your friends and family
+						Slick-Chat makes it effortless to create secure chat links and start
+						conversations in seconds.
 					</DialogDescription>
 				</DialogHeader>
-				<Button variant={'outline'}>
+				<Button variant="outline" onClick={handleGoogleLogin}>
 					<Image
-						className="mr-4"
 						src="/images/google.png"
-						alt="Google Logo"
-						width={24}
-						height={24}
+						className=" mr-4"
+						width={25}
+						height={25}
+						alt="google-logo"
 					/>
-					Sign in with Google
+					Continue with Google
 				</Button>
 			</DialogContent>
 		</Dialog>
