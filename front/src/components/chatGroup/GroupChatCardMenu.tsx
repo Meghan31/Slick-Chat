@@ -25,7 +25,7 @@ export default function GroupChatCardMenu({
   const [editDialoag, setEditDialog] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard?.writeText(`${Env.APP_URL}/chat/${group.id}`);
+    navigator.clipboard?.writeText(${Env.APP_URL}/chat/${group.id});
     toast.success("Link copied successfully!");
   };
 
@@ -57,6 +57,12 @@ export default function GroupChatCardMenu({
           <DotsVerticalIcon className="h-5 w-5" />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
+          
+    {/* <Link href= {${Env.APP_URL}/chat/${group.id}}></Link> */}
+    <DropdownMenuItem onClick={() => window.location.href = ${Env.APP_URL}/chat/${group.id}}>
+  Go to chat
+</DropdownMenuItem>
+
           <DropdownMenuItem onClick={handleCopy}>Copy</DropdownMenuItem>
           <DropdownMenuItem onClick={() => setEditDialog(true)}>
             Edit
