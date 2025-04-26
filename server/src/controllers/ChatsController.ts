@@ -60,7 +60,7 @@ export const consumeMessages = async (topic: string) => {
         data: data,
       });
 
-      // Process the message (e.g., save to DB, trigger some action, etc.)
+      // Process the message (e.g., save to DB, trigger some action, etc.)///
     },
   });
 };
